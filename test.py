@@ -24,13 +24,13 @@ class TodoItemTester(unittest.TestCase):
         self.assertEqual(t.deadline, d, 'Wrong deadline')
 
 
-    def test_value_error(self):
+    def test_constructor_error(self):
         date = '2017-03-05'
         with self.assertRaises(TypeError, msg='Deadline must be a Datetime object'):
             item = TodoItem('implement TodoItem class', date)
 
 
-    def test_value_error2(self):
+    def test_contructor_error2(self):
         date = datetime(2017, 5, 16)
         with self.assertRaises(TypeError, msg='Title must be a string'):
             item = TodoItem(100, date)
@@ -190,7 +190,11 @@ class TodoMatrixTester(unittest.TestCase):
 
     def test_constructor(self):
         matrix = TodoMatrix()
-        self.assertEqual(tuple(matrix.todo_quarters), ('IU', 'IN', 'NU', 'NN'))
+        self.assertEqual('IU' in matrix.todo_quarters.keys(), True)
+        self.assertEqual('IN' in matrix.todo_quarters.keys(), True)
+        self.assertEqual('NU' in matrix.todo_quarters.keys(), True)
+        self.assertEqual('NN' in matrix.todo_quarters.keys(), True)
+        self.assertEqual(len(matrix.todo_quarters.keys()), 4)
 
 
     def test_add_items_from_file(self):
