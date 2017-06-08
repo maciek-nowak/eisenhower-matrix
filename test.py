@@ -26,13 +26,13 @@ class TodoItemTester(unittest.TestCase):
 
     def test_value_error(self):
         date = '2017-03-05'
-        with self.assertRaises(ValueError, msg='Deadline must be a Datetime object'):
+        with self.assertRaises(TypeError, msg='Deadline must be a Datetime object'):
             item = TodoItem('implement TodoItem class', date)
 
 
     def test_value_error2(self):
         date = datetime(2017, 5, 16)
-        with self.assertRaises(ValueError, msg='Title must be a string'):
+        with self.assertRaises(TypeError, msg='Title must be a string'):
             item = TodoItem(100, date)
 
 
@@ -90,7 +90,7 @@ class TodoQuarterTester(unittest.TestCase):
 
     def test_add_item_error(self):
         quarter = TodoQuarter()
-        with self.assertRaises(ValueError, msg='Incorrect deadline'):
+        with self.assertRaises(TypeError, msg='Incorrect deadline'):
             quarter.add_item('implement Quarter Class', 'error date')
 
 
