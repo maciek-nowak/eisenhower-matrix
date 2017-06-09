@@ -126,7 +126,7 @@ This is the file containing a TODO item logic.
 
 ### Class TodoItem
 
-__Attributes__
+__Instance Attributes__
 
 * `title`
   - data: string
@@ -225,7 +225,7 @@ __Instance methods__
 
 This is the file containing the logic of the Eisenhower TODO matrix.
 
-__Attributes__
+__Instance Attributes__
 
 * `todo_quarters`
 
