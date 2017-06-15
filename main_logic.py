@@ -21,11 +21,19 @@ def add_item(matrix):
     while not month.isdigit() or int(month) > 12 or int(month) < 1:
         month = input('Type the number of the month [1 - 12]: ')
 
-    day = ''
-    while not day.isdigit() or int(day) > 31 or int(day) < 1:
-        day = input('Type the number of the day [1 - 31]: ')
+    correct = False
+    while not correct:
+        correct = True
 
-    deadline = datetime(2017, int(month), int(day))
+        day = ''
+        while not day.isdigit() or int(day) > 31 or int(day) < 1:
+            day = input('Type the number of the day [1 - 31]: ')
+
+        try:
+            deadline = datetime(2017, int(month), int(day))
+        except ValueError:
+            print('Incorrect day for given month')
+            correct = False
 
     is_important = ''
     while is_important not in ['y', 'n']:
