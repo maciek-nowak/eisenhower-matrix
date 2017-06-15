@@ -41,10 +41,39 @@ class TodoMatrix:
             self.todo_quarters[key].todo_items = [
                 item for item in self.todo_quarters[key].todo_items if not item.is_done]
 
-    def __str__(self):
+    """def __str__(self):
         listed_quaters = [key + '\n' + self.get_quarter(key).__str__() for key in self.todo_quarters]
         listed_quaters = '\n'.join(listed_quaters)
-        return listed_quaters
+        return listed_quaters"""
+
+    @property
+    def columns_width(self):
+        quarters_widths = [self.get_quarter(key).width for key in self.todo_quarters]
+
+        columns_width = max(quarters_widths + [len(' urgent '), len(' not urgent ')])
+
+        return columns_width
+
+    @property
+    def rows_height(self):
+        quarters_heights = [self.get_quarter(key).height for key in self.todo_quarters]
+
+        rows_height = max(quarters_heights + [len('important'), len('not important')])
+
+        return rows_height
+
+    def __str__(self):
+        titles_row = common.prepare_titles_row(self.columns_width)
+        border_row = common.prepare_border_row(self.columns_width)
+        important_rows = common.prepare_important_rows([self.get_quarter(status).__str__() for status in ['IU', 'IN']],
+                                                       self.columns_width, self.rows_height, 'IMPORTANT')
+        not_important_rows = common.prepare_important_rows(
+            [self.get_quarter(status).__str__() for status in ['NU', 'NN']],
+            self.columns_width, self.rows_height, 'NOT IMPORTANT')
+
+        matrix_to_print = '\n'.join(
+            [titles_row, border_row, important_rows, border_row,  not_important_rows, border_row])
+        return '\n' + matrix_to_print + '\n'
 
 
 def main():
@@ -57,12 +86,10 @@ def main():
     matrix.get_quarter('IN').get_item(0).mark()
     matrix.add_items_from_file('todo_items_read_test.csv')
     matrix.archive_items()
-    # print('IU', matrix.todo_quarters['IU'])
-    # print('IN', matrix.todo_quarters['IN'])
-    # print('NU', matrix.todo_quarters['NU'])
-    # print('NN', matrix.todo_quarters['NN'])
     print(matrix)
     matrix.save_items_to_file('todo_items.csv')
+    print(matrix.columns_width, matrix.rows_height)
+    print(matrix.prepare_matrix_to_print())
 
 
 if __name__ == '__main__':
