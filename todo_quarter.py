@@ -6,6 +6,14 @@ class TodoQuarter:
     def __init__(self):
         self.todo_items = []
 
+    @property
+    def height(self):
+        return self.calculate_quarter_size()[0]
+
+    @property
+    def width(self):
+        return self.calculate_quarter_size()[1]
+
     def sort_items(self):
         self.todo_items.sort(key=lambda x: x.deadline)
 
@@ -31,16 +39,26 @@ class TodoQuarter:
         listed_items = '\n'.join(listed_items) + '\n'
         return listed_items
 
+    def calculate_quarter_size(self):
+        margin = 1
+        quarter_text_list = self.__str__().splitlines()
+        quarter_text_list = [line.strip() for line in quarter_text_list]
+        height = len(quarter_text_list)
+        width = len(max(quarter_text_list, key=len)) + 2 * margin
+        return height, width
+
 
 def main():
-    quater = TodoQuarter()
-    quater.add_item('kot', datetime(2017, 10, 8))
-    quater.add_item('pies', datetime(2017, 1, 8))
-    quater.add_item('chomik', datetime(2017, 9, 8))
-    quater.add_item('ryś', datetime(2017, 4, 3))
+    quarter = TodoQuarter()
+    quarter.add_item('kot', datetime(2017, 10, 8))
+    quarter.add_item('pies', datetime(2017, 1, 8))
+    quarter.add_item('chomik', datetime(2017, 9, 8))
+    quarter.add_item('ryś', datetime(2017, 4, 3))
 
-    print(quater.todo_items)
-    print(quater)
+    print(quarter.todo_items)
+    print(quarter)
+
+    print(quarter.height, quarter.width)
 
 
 if __name__ == '__main__':
