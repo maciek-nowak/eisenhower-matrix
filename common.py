@@ -47,3 +47,34 @@ def prepare_items_to_save(list_to_save):
     list_to_save = [[item[0], str(item[1].day) + '-' + str(item[1].month), item[2]] for item in list_to_save]
     list_to_save = ['|'.join(item) + '\n' for item in list_to_save]
     return list_to_save
+
+
+def prepare_titles_row(columns_width):
+    titles_row = '  |' + 'URGENT'.center(columns_width) + '|' + 'NOT URGENT'.center(columns_width) + '|  '
+    return titles_row
+
+
+def prepare_border_row(columns_width):
+    border_row = '--|' + '-' * columns_width + '|' + '-' * columns_width + '|--'
+    return border_row
+
+
+def prepare_important_rows(str_list, columns_width, rows_height, row_name):
+    iu_list = str_list[0].strip().splitlines()
+    in_list = str_list[1].strip().splitlines()
+
+    if len(iu_list) < rows_height:
+        iu_list += ['' for i in range(rows_height - len(iu_list))]
+    if len(in_list) < rows_height:
+        in_list += ['' for i in range(rows_height - len(in_list))]
+
+    list_to_print = []
+    row_name = row_name.center(rows_height)
+
+    for i in range(rows_height):
+        single_row = row_name[i] + ' | ' + iu_list[i].ljust(columns_width - 1) + '| ' + in_list[i].ljust(
+            columns_width - 1) + '|  '
+        list_to_print.append(single_row)
+
+    important_rows = '\n'.join(list_to_print)
+    return important_rows
