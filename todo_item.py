@@ -30,7 +30,7 @@ class TodoItem:
         time_to_deadline = (self.deadline - datetime.today()).days
         if time_to_deadline < 0:
             color = RED
-        elif time_to_deadline <= 3:
+        elif time_to_deadline < 3:
             color = ORANGE
         else:
             color = GREEN

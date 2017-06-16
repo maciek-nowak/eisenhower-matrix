@@ -15,7 +15,10 @@ def add_item(matrix):
     """
     item_name = ''
     while not len(item_name) or len(item_name) == item_name.count(' '):
-        item_name = input('Type name of the item to add: ')
+        item_name = input('Type name of the item to add (max 50 characters): ')
+
+    if len(item_name) > 50:
+        item_name = item_name[:50]
 
     print('Type the deadline of the item: ')
     month = ''

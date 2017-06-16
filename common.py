@@ -4,7 +4,7 @@ from datetime import datetime
 def choose_quarter_name(deadline, is_important):
     current_date = datetime.today()
 
-    if (deadline - current_date).days <= 3:
+    if (deadline - current_date).days < 3:
         urgency = 'U'
     else:
         urgency = 'N'
