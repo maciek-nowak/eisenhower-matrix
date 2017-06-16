@@ -62,11 +62,11 @@ class TodoMatrix:
         border_row = common.prepare_border_row(self.columns_width)
 
         important_rows = common.prepare_important_rows(
-            [self.get_quarter(status).__str__() for status in ['IU', 'IN']],
+            [self.get_quarter(status).color__str__() for status in ['IU', 'IN']],
             self.columns_width, self.rows_height, 'IMPORTANT')
 
         not_important_rows = common.prepare_important_rows(
-            [self.get_quarter(status).__str__() for status in ['NU', 'NN']],
+            [self.get_quarter(status).color__str__() for status in ['NU', 'NN']],
             self.columns_width, self.rows_height, 'NOT IMPORTANT')
 
         matrix_to_print = '\n'.join(
@@ -87,7 +87,6 @@ def main():
     print(matrix)
     matrix.save_items_to_file('todo_items.csv')
     print(matrix.columns_width, matrix.rows_height)
-    print(matrix.prepare_matrix_to_print())
 
 
 if __name__ == '__main__':
