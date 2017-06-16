@@ -72,13 +72,17 @@ def prepare_important_rows(str_list, columns_width, rows_height, row_name):
     row_name = row_name.center(rows_height)
 
     for i in range(rows_height):
-        single_row = row_name[i] + ' | ' + iu_list[i].ljust(columns_width - 1) + '| ' + in_list[i].ljust(
+        colored_iu = iu_list[i]
+        colorless_iu = colored_iu.replace('\033[0m', '').replace('\033[31m', '').replace('\033[32m', '').replace(
+            '\033[33m', '')
+        colored_in = in_list[i]
+        colorless_in = colored_in.replace('\033[0m', '').replace('\033[31m', '').replace('\033[32m', '').replace(
+            '\033[33m', '')
+
+        single_row = row_name[i] + ' | ' + colorless_iu.ljust(columns_width - 1) + '| ' + colorless_in.ljust(
             columns_width - 1) + '|  '
 
-        """if len(single_row) != 2 * columns_width + 15:
-            single_row = single_row.replace('^', 10 * ' ')
-        else:
-            single_row = single_row.replace('^', '')"""
+        single_row = single_row.replace(colorless_iu, colored_iu).replace(colorless_in, colored_in)
 
         list_to_print.append(single_row)
 
