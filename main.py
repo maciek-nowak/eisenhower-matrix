@@ -1,9 +1,7 @@
 import os
-from datetime import datetime
-from todo_item import TodoItem
-from todo_quarter import TodoQuarter
-from todo_matrix import TodoMatrix
+import common
 import main_logic
+from todo_matrix import TodoMatrix
 
 
 def handle_menu():
@@ -57,7 +55,7 @@ def choose_and_start_option(matrix):
         matrix.save_items_to_file('todo_items.csv')
         exit = True
     else:
-        print("There is no such option.")
+        common.print_error_message("There is no such option.")
 
     return exit
 

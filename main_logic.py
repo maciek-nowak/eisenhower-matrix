@@ -1,3 +1,4 @@
+import common
 from datetime import datetime
 
 
@@ -15,25 +16,29 @@ def add_item(matrix):
     item_name = ''
     while not len(item_name) or len(item_name) == item_name.count(' '):
         item_name = input('Type name of the item to add: ')
+
     print('Type the deadline of the item: ')
-
     month = ''
-    while not month.isdigit() or int(month) > 12 or int(month) < 1:
+    while not month.isdigit() or int(month) not in range(1, 13):
         month = input('Type the number of the month [1 - 12]: ')
+        if not month.isdigit() or int(month) not in range(1, 13):
+            common.print_error_message('Month has to be in range [1 - 12]')
 
-    correct = False
-    while not correct:
-        correct = True
+    is_day_correct = False
+    while not is_day_correct:
+        is_day_correct = True
 
         day = ''
-        while not day.isdigit() or int(day) > 31 or int(day) < 1:
+        while not day.isdigit() or int(day) not in range(1, 32):
             day = input('Type the number of the day [1 - 31]: ')
+            if not day.isdigit() or int(day) not in range(1, 32):
+                common.print_error_message('Day has to be in range [1 - 31]')
 
         try:
             deadline = datetime(2017, int(month), int(day))
         except ValueError:
-            print('Incorrect day for given month')
-            correct = False
+            common.print_error_message('Incorrect day for given month')
+            is_day_correct = False
 
     is_important = ''
     while is_important not in ['y', 'n']:
@@ -44,7 +49,7 @@ def add_item(matrix):
     try:
         matrix.add_item(item_name, deadline, importancy[is_important])
     except TypeError:
-        print('The deadline format is not proper!')
+        common.print_error_message('The deadline format is not proper!')
 
 
 def choose_quarter(matrix):
@@ -65,6 +70,8 @@ def choose_quarter(matrix):
     user_input = ''
     while user_input not in ['1', '2', '3', '4']:
         user_input = input('Your choice: ')
+        if user_input not in ['1', '2', '3', '4']:
+            common.print_error_message('Quarter number has to be in range [1 - 4]')
 
     return matrix.get_quarter(choose_quarter_dict[int(user_input)])
 
@@ -96,7 +103,7 @@ def mark_item(matrix):
         chosen_item = choose_item(chosen_quarter)
         chosen_item.mark()
     except IndexError:
-        print('There is no such item!')
+        common.print_error_message('There is no such item!')
 
 
 def unmark_item(matrix):
@@ -106,7 +113,7 @@ def unmark_item(matrix):
         chosen_item = choose_item(chosen_quarter)
         chosen_item.unmark()
     except IndexError:
-        print('There is no such item!')
+        common.print_error_message('There is no such item!')
 
 
 def remove_item(matrix):
@@ -116,4 +123,4 @@ def remove_item(matrix):
     try:
         chosen_quarter.remove_item(chosen_item_index)
     except IndexError:
-        print('There is no such item!')
+        common.print_error_message('There is no such item!')
