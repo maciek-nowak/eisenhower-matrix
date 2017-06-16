@@ -21,6 +21,26 @@ class TodoItem:
         item_status = mark[self.is_done] + str(self.deadline.day) + '-' + str(self.deadline.month) + ' ' + self.title
         return item_status
 
+    def color__str__(self):
+        RESET_COLOR = '\033[0m'
+        RED = '\033[31m'
+        ORANGE = '\033[33m'
+        GREEN = '\033[32m'
+
+        time_to_deadline = (self.deadline - datetime.today()).days
+        if time_to_deadline < 0:
+            color = RED
+        elif time_to_deadline <= 3:
+            color = ORANGE
+        else:
+            color = GREEN
+
+        mark = {True: '[x] ', False: '[ ] '}
+        item_status = color + mark[self.is_done] + str(self.deadline.day) + '-' + str(
+            self.deadline.month) + ' ' + self.title + RESET_COLOR
+
+        return item_status
+
 
 def main():
     a = TodoItem('kot', datetime(2017, 4, 8))

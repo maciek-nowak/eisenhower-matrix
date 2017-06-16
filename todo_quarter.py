@@ -39,6 +39,12 @@ class TodoQuarter:
         listed_items = '\n'.join(listed_items) + '\n'
         return listed_items
 
+    def color__str__(self):
+        listed_items = [item.color__str__() for item in self.todo_items]
+        listed_items = [str(i+1) + '. ' + listed_items[i] for i in range(len(listed_items))]
+        listed_items = '\n'.join(listed_items) + '\n'
+        return listed_items
+
     def calculate_quarter_size(self):
         margin = 1
         quarter_text_list = self.__str__().splitlines()

@@ -74,6 +74,12 @@ def prepare_important_rows(str_list, columns_width, rows_height, row_name):
     for i in range(rows_height):
         single_row = row_name[i] + ' | ' + iu_list[i].ljust(columns_width - 1) + '| ' + in_list[i].ljust(
             columns_width - 1) + '|  '
+
+        """if len(single_row) != 2 * columns_width + 15:
+            single_row = single_row.replace('^', 10 * ' ')
+        else:
+            single_row = single_row.replace('^', '')"""
+
         list_to_print.append(single_row)
 
     important_rows = '\n'.join(list_to_print)

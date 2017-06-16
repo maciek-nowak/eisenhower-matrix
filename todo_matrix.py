@@ -41,11 +41,6 @@ class TodoMatrix:
             self.todo_quarters[key].todo_items = [
                 item for item in self.todo_quarters[key].todo_items if not item.is_done]
 
-    """def __str__(self):
-        listed_quaters = [key + '\n' + self.get_quarter(key).__str__() for key in self.todo_quarters]
-        listed_quaters = '\n'.join(listed_quaters)
-        return listed_quaters"""
-
     @property
     def columns_width(self):
         quarters_widths = [self.get_quarter(key).width for key in self.todo_quarters]
@@ -65,8 +60,11 @@ class TodoMatrix:
     def __str__(self):
         titles_row = common.prepare_titles_row(self.columns_width)
         border_row = common.prepare_border_row(self.columns_width)
-        important_rows = common.prepare_important_rows([self.get_quarter(status).__str__() for status in ['IU', 'IN']],
-                                                       self.columns_width, self.rows_height, 'IMPORTANT')
+
+        important_rows = common.prepare_important_rows(
+            [self.get_quarter(status).__str__() for status in ['IU', 'IN']],
+            self.columns_width, self.rows_height, 'IMPORTANT')
+
         not_important_rows = common.prepare_important_rows(
             [self.get_quarter(status).__str__() for status in ['NU', 'NN']],
             self.columns_width, self.rows_height, 'NOT IMPORTANT')
