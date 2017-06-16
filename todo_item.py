@@ -1,8 +1,20 @@
 from datetime import datetime
+import common
 
 
 class TodoItem:
     def __init__(self, title, deadline):
+        """
+        Method creates an instance of the class
+
+        Args:
+            title (str): name of the item
+            deadline (obj): object of datetime class
+
+        Returns:
+            None
+        """
+
         if type(title) is not str or type(deadline) is not datetime:
             raise TypeError
 
@@ -11,29 +23,47 @@ class TodoItem:
         self.is_done = False
 
     def mark(self):
+        """
+        Method changes value of object is_done attribute to True
+
+        Returns:
+            None
+        """
+
         self.is_done = True
 
     def unmark(self):
+        """
+        Method changes value of object is_done attribute to False
+
+        Returns:
+            None
+        """
+
         self.is_done = False
 
     def __str__(self):
+        """
+        Method overloads the str operator
+
+        Returns:
+            item_status (str): string used by print function
+        """
+
         mark = {True: '[x] ', False: '[ ] '}
         item_status = mark[self.is_done] + str(self.deadline.day) + '-' + str(self.deadline.month) + ' ' + self.title
         return item_status
 
     def color__str__(self):
-        RESET_COLOR = '\033[0m'
-        RED = '\033[31m'
-        ORANGE = '\033[33m'
-        GREEN = '\033[32m'
+        """
+        Method creates colored string with object status
 
-        time_to_deadline = (self.deadline - datetime.today()).days
-        if time_to_deadline < 0:
-            color = RED
-        elif time_to_deadline < 3:
-            color = ORANGE
-        else:
-            color = GREEN
+        Returns:
+            item_status (str): colored string with object status
+        """
+
+        RESET_COLOR = '\033[0m'
+        color = common.choose_item_color(self.deadline)
 
         mark = {True: '[x] ', False: '[ ] '}
         item_status = color + mark[self.is_done] + str(self.deadline.day) + '-' + str(

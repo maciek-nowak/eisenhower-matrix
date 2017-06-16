@@ -68,7 +68,7 @@ def main():
     try:
         matrix.add_items_from_file('todo_items.csv')
     except FileNotFoundError:
-        print('Database file not found! No items were imported')
+        common.print_error_message('Database file not found! No items were imported')
 
     exit = False
     while not exit:

@@ -56,6 +56,16 @@ def add_item(matrix):
 
 
 def choose_quarter(matrix):
+    """
+    Function gets input from user and chooses the proper quarter of matrix
+
+    Args:
+        matrix (obj): object represents whole Eisenhower Matrix
+
+    Returns:
+        (obj): object represents chosen quarter of matrix
+    """
+
     choose_quarter_dict = {1: 'IU', 2: 'IN', 3: 'NU', 4: 'NN'}
     choose_quarter_menu = """Choose the quarter of matrix:
     1. Important & urgent
@@ -80,6 +90,16 @@ def choose_quarter(matrix):
 
 
 def choose_item(chosen_quarter):
+    """
+    Function gets input from user and chooses the proper item of given matrix quarter
+
+    Args:
+        chosen_quarter (obj): object represents one of the Eisenhower Matrix quarters
+
+    Returns:
+        chosen_item (obj): object represents chosen item of TodoItem class
+    """
+
     user_input = ''
     while not user_input.isdigit():
         user_input = input('Choose number of item: ')
@@ -90,6 +110,13 @@ def choose_item(chosen_quarter):
 
 
 def choose_item_index():
+    """
+    Function gets input from user and returns index of item
+
+    Returns:
+        chosen_item_index (int): number chosen by user
+    """
+
     user_input = ''
     while not user_input.isdigit():
         user_input = input('Choose number of item: ')
@@ -100,6 +127,16 @@ def choose_item_index():
 
 
 def mark_item(matrix):
+    """
+    Function marks item as done
+
+    Args:
+        matrix (obj): object represents whole Eisenhower Matrix
+                    (function changes the one of TodoItem object attributes)
+    Returns:
+        None
+    """
+
     chosen_quarter = choose_quarter(matrix)
 
     try:
@@ -110,6 +147,16 @@ def mark_item(matrix):
 
 
 def unmark_item(matrix):
+    """
+    Function marks item as undone
+
+    Args:
+        matrix (obj): object represents whole Eisenhower Matrix
+                    (function changes the one of TodoItem object attributes)
+    Returns:
+        None
+    """
+
     chosen_quarter = choose_quarter(matrix)
 
     try:
@@ -120,6 +167,16 @@ def unmark_item(matrix):
 
 
 def remove_item(matrix):
+    """
+    Function removes item from quarter list of items
+
+    Args:
+        matrix (obj): object represents whole Eisenhower Matrix
+                    (function removes one of the TodoItem class objects)
+    Returns:
+        None
+    """
+
     chosen_quarter = choose_quarter(matrix)
     chosen_item_index = choose_item_index()
 
