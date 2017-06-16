@@ -53,7 +53,12 @@ def choose_quarter(matrix):
     1. Important & urgent
     2. Important & not urgent
     3. Not important & urgent
-    4. Not important & not urgent"""
+    4. Not important & not urgent
+    ╔═══╦═══╗
+    ║ 1 ║ 2 ║
+    ╠═══╬═══╣
+    ║ 3 ║ 4 ║
+    ╚═══╩═══╝"""
 
     print(choose_quarter_menu)
 
