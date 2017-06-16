@@ -88,3 +88,10 @@ def prepare_important_rows(str_list, columns_width, rows_height, row_name):
 
     important_rows = '\n'.join(list_to_print)
     return important_rows
+
+
+def print_error_message(message):
+    RESET_COLOR = '\033[0m'
+    RED = '\033[31m'
+
+    print(RED + message + RESET_COLOR)
