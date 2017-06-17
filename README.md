@@ -118,7 +118,15 @@ Bob is a beginner Codecooler. He is a good self-learner, but he has a problem to
 ## The specification
 
 ### `main.py`
-TODO
+__Fuctions__
+* `main()`
+* `handle_menu()`
+
+  Function prints main menu
+
+* `choose_and_start_option(matrix)`
+
+  Function gets input from user and runs proper function
 
 ### `todo_item.py`
 
@@ -168,6 +176,15 @@ __Instance methods__
   
   `[ ] 28-6 submit assignment`
 
+* `color__str__(self)`
+
+  Returns a formatted colored string with details about todo_item.
+  Format of deadline is 'day-month'
+  Colors of strings (only for undone tasks):
+  - green: if the deadline is coming far than 3 days
+  - orange: if deadline is coming in the next 3 days
+  - red: if deadline is crossed
+
 ### `todo_quarter.py`
 
 This is the file containing a logic of the Eisenhower TODO quarter.
@@ -179,6 +196,12 @@ __Instance Attributes__
 * `todo_items`
   - data: list
   - description: list of TodoItem objects
+* `width`
+  - data: int
+  - description: width of quarter
+* `height`
+  - height: int
+  - description: height of quarter
 
 __Instance methods__
 
@@ -216,9 +239,21 @@ __Instance methods__
   1. [ ] 9-6  go to the doctor
   2. [x] 11-6 submit assignment
   ```
-  
   Hint: use instance method *__str__()* from class *TodoItem*
 
+* `color__str__(self)`
+
+  Returns a formatted colored string of *todo_items* sorted decreasing by *deadline*.
+  Colors of strings (only for undone tasks):
+  - green: if the deadline is coming far than 3 days
+  - orange: if deadline is coming in the next 3 days
+  - red: if deadline is crossed
+  
+  
+
+* `calculate_quarter_size(self)`
+
+  returns height and width of quarter
 
 ### `todo_matrix.py`
 ### Class TodoMatrix
@@ -240,6 +275,15 @@ __Instance Attributes__
         - 'NU' means that todo_quarter contains not important todo_items & urgent
         - 'NN' means that todo_quarter contains not important & not urgent todo_items
 
+* `columns_width`
+
+  - data: int
+  - description: width of matrix columns
+
+* `columns_height`
+
+  - data: int
+  - description: height of matrix rows  
 
 __Instance methods__
 
@@ -285,3 +329,76 @@ __Instance methods__
 
   Returns all elements of attribute *todo_quarters* formatted to string.
   
+### `main_logic.py`
+__Fuctions__
+
+* `add_item(matrix)`
+
+  Function gets input from user and adds item to the matrix
+
+* `choose_quarter(matrix)`
+
+  Function gets input from user and chooses the proper quarter of matrix
+
+* `choose_item(chosen_quarter)`
+
+  Function gets input from user and chooses the proper item of given matrix quarter
+
+* `choose_item_index()`
+
+  Function gets input from user and returns index of item
+
+* `mark_item(matrix)`
+
+  Function marks item as done
+
+* `unmark_item(matrix)`
+
+  Function marks item as undone
+
+* `remove_item(matrix)`
+
+  Function removes item from quarter list of items
+
+### `common.py`
+__Fuctions__
+
+* `choose_quarter_name(deadline, is_important)`
+
+  Function chooses quarter of matrix
+
+* `read_file(file_name)`
+
+  Function reads file content
+
+* `prepare_items_to_add(item_list)`
+
+  Function prepares data format for adding new TodoItem objects
+
+* `create_list_to_save(matrix)`
+
+  Function creates data of all TodoItems to export to the file
+
+* `prepare_items_to_save(list_to_save)`
+
+  Function prepares list of strings to save to the file
+
+* `prepare_titles_row(columns_width)`
+
+  Function prepares title row of matrix to print
+
+* `prepare_border_row(columns_width)`
+
+  Function prepares border row of matrix to print
+
+* `prepare_important_rows(str_list, columns_width, rows_height, row_name)`
+
+  Function prepares data rows of matrix to print
+
+* `print_error_message(message)`
+
+  Function prints red error message
+
+* `choose_item_color(deadline, is_done)`
+
+  Function chooses proper color
