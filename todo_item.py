@@ -63,7 +63,7 @@ class TodoItem:
         """
 
         RESET_COLOR = '\033[0m'
-        color = common.choose_item_color(self.deadline)
+        color = common.choose_item_color(self.deadline, self.is_done)
 
         mark = {True: '[x] ', False: '[ ] '}
         item_status = color + mark[self.is_done] + str(self.deadline.day) + '-' + str(

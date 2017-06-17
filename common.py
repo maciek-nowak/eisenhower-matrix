@@ -198,7 +198,7 @@ def print_error_message(message):
     print(RED + message + RESET_COLOR)
 
 
-def choose_item_color(deadline):
+def choose_item_color(deadline, is_done):
     """
     Function chooses proper color
 
@@ -220,5 +220,8 @@ def choose_item_color(deadline):
         color = ORANGE
     else:
         color = GREEN
+
+    if is_done:
+        color = ''
 
     return color
